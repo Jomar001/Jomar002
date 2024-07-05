@@ -1,11 +1,11 @@
 <script>
         var products = [
-        { id: 1, name: " Nike Air Jordan 1 retro ", price: 7499.00 },
-        { id: 2, name: " Nike Air Jordan 2 retro ", price: 4499.00 },
-        { id: 3, name: " Nike Air Jordan 3 retro ", price: 9999.00 },
-        { id: 4, name: " Nike Air Jordan 4 retro ", price: 8199.00 },
-        { id: 5, name: " Nike Air Jordan 5 retro ", price: 9995.00 },
-        { id: 6, name: " Nike Air Jordan 6 retro ", price: 10850.00 },
+        { id: 1, name: "Nike Air Jordan 1 retro", price: 7499.00 },
+        { id: 2, name: "Nike Air Jordan 2 retro", price: 4499.00 },
+        { id: 3, name: "Nike Air Jordan 3 retro", price: 9999.00 },
+        { id: 4, name: "Nike Air Jordan 4 retro", price: 8199.00 },
+        { id: 5, name: "Nike Air Jordan 5 retro", price: 9995.00 },
+        { id: 6, name: "Nike Air Jordan 6 retro", price: 10850.00 },
         
     ];
     
