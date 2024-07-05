@@ -1,65 +1,58 @@
-var product1 = document.getElementById("product1");
-var qty1 = document.getElementById("qty1");
-var price1 = document.getElementById("price1");
-var product2 = document.getElementById("product2");
-var qty2 = document.getElementById("qty2");
-var price2 = document.getElementById("price2");
-var product2 = document.getElementById("product3");
-var qty2 = document.getElementById("qty3");
-var price2 = document.getElementById("price3");
-var product2 = document.getElementById("product4");
-var qty2 = document.getElementById("qty4");
-var price2 = document.getElementById("price4");
-var product2 = document.getElementById("product5");
-var qty2 = document.getElementById("qty5");
-var price2 = document.getElementById("price5");
-var product2 = document.getElementById("product6");
-var qty2 = document.getElementById("qty6");
-var price2 = document.getElementById("price6");
-var carts = document.getElementById("carts");
-var totalInput = document.getElementById("total");
-var cashInput = document.getElementById("cash");
-var changeInput = document.getElementById("change");
-
-function addOrder() {
-    carts.textContent = "";
-
-    if (parseFloat(qty1.value) > 0) {
-        var order1 = qty1.value.toString() + " pcs x " + product1.textContent + " - Php " + (parseFloat(qty1.value) * parseFloat(price1.textContent)).toFixed(2) + "\n";
-        carts.textContent += order1;
+<script>
+        var products = [
+        { id: 1, name: "Nike Air Jordan 1 retro", price: 2470.00 },
+        { id: 2, name: "Nike Air Jordan 2 retro", price: 2660.00 },
+        { id: 3, name: "Nike Air Jordan 3 retro", price: 3405.00 },
+        { id: 4, name: "Nike Air Jordan 4 retro", price: 3395.00 },
+        { id: 5, name: "Nike Air Jordan 5 retro", price: 3420.00 },
+        { id: 6, name: "Nike Air Jordan 6 retro ", price: 3040.00 },
+        
+    ];
+    
+    
+    var qtyInputs = document.querySelectorAll('[id^="qty"]');
+    var carts = document.getElementById("carts");
+    var totalInput = document.getElementById("total");
+    var cashInput = document.getElementById("cash");
+    var changeInput = document.getElementById("change");
+    
+    
+    qtyInputs.forEach(function(qtyInput) {
+        qtyInput.addEventListener("input", addOrder);
+    });
+    
+    cashInput.addEventListener("input", calculateChange);
+    
+    
+    function addOrder() {
+        carts.textContent = ""; // Clear previous cart content
+    
+        var total = 0;
+    
+        qtyInputs.forEach(function(qtyInput, index) {
+            var qty = parseFloat(qtyInput.value);
+            if (qty > 0) {
+                var product = products[index];
+                var order = qty + " pcs x " + product.name + " - Php " + (qty * product.price).toFixed(2) + "\n";
+                carts.textContent += order;
+                total += qty * product.price;
+            }
+        });
+    
+        totalInput.value = total.toFixed(2); // Update total
+        calculateChange(); // Recalculate change
     }
-
-    if (parseFloat(qty2.value) > 0) {
-        var order2 = qty2.value.toString() + " pcs x " + product2.textContent + " - Php " + (parseFloat(qty2.value) * parseFloat(price2.textContent)).toFixed(2) + "\n";
-        carts.textContent += order2;
+    
+    
+    function calculateChange() {
+        var total = parseFloat(totalInput.value);
+        var cash = parseFloat(cashInput.value);
+    
+        if (!isNaN(total) && !isNaN(cash)) {
+            var change = cash - total;
+            changeInput.value = change.toFixed(2);
+        } else {
+            changeInput.value = "";
+        }
     }
-
-    updateTotal(); // Update total after adding orders
-}
-
-function updateTotal() {
-    var total = 0;
-
-    total += parseFloat(qty1.value) * parseFloat(price1.textContent);
-
-    total += parseFloat(qty2.value) * parseFloat(price2.textContent);
-
-    totalInput.value = total.toFixed(2); // Update total input field
-    calculateChange(); // Calculate change after updating total
-}
-
-function calculateChange() {
-    var total = parseFloat(totalInput.value);
-    var cash = parseFloat(cashInput.value);
-
-    if (!isNaN(total) && !isNaN(cash)) {
-        var change = cash - total;
-        changeInput.value = change.toFixed(2); // Update change input field
-    } else {
-        changeInput.value = "";
-    }
-}
-
-qty1.addEventListener("keyup", addOrder);
-qty2.addEventListener("keyup", addOrder);
-cashInput.addEventListener("input", calculateChange);
+    </script>
