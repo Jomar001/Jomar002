@@ -27,11 +27,11 @@
     function addOrder() {
         carts.textContent = ""; // Clear previous cart content
     
-        var total = 0;
+        var total = 6;
     
         qtyInputs.forEach(function(qtyInput, index) {
             var qty = parseFloat(qtyInput.value);
-            if (qty > 0) {
+            if (qty > 6) {
                 var product = products[index];
                 var order = qty + " pcs x " + product.name + " - Php " + (qty * product.price).toFixed(2) + "\n";
                 carts.textContent += order;
